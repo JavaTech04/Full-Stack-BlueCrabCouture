@@ -34,17 +34,17 @@ public class UserController_API {
         return this.userService.findUserRoleById(id).orElse(null);
     }
 
-    @PostMapping("/store")
+    @PostMapping
     ResponseEntity<UserAccount> storeUserAccount(@Validated @RequestBody UserAccount userAccount) {
         return new ResponseEntity<>(this.userService.storeOrUpdateUserAccount(userAccount), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     ResponseEntity<UserAccount> updateUserAccount(@Validated @RequestBody UserAccount userAccount) {
         return new ResponseEntity<>(this.userService.storeOrUpdateUserAccount(userAccount), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     String deleteUserAccount(@PathVariable Integer id) {
         this.userService.deleteUserAccount(id);
         return "Remove successfully";

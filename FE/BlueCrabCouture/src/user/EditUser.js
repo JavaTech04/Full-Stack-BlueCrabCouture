@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { findUserAccountById, findUserRole, updateUserAccount } from '../API/ApiService'
 
 export default function EditUser() {
     let navigate = useNavigate()
@@ -17,7 +18,7 @@ export default function EditUser() {
     const { phoneNumber, email, password } = user
     const onChangeInput = async (e) => {
         if (e.target.name === "role") {
-            const userRole = await (await axios.get(`http://localhost:8080/api/user/role/${e.target.value}`)).data;
+            const userRole = await findUserRole(e.target.value);
             setUser({ ...user, role: userRole });
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });
@@ -27,7 +28,7 @@ export default function EditUser() {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.put("http://localhost:8080/api/user/update", user)
+            await updateUserAccount(user)
             navigate("/")
         } catch (error) {
             setErrors(error.response.data);
@@ -35,8 +36,8 @@ export default function EditUser() {
     }
 
     const loadUser = async () => {
-        const result = await axios.get(`http://localhost:8080/api/user/${id}`)
-        setUser(result.data)
+        const result = await findUserAccountById(id)
+        setUser(result)
     }
     return (
         <div className='container'>

@@ -1,6 +1,6 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { findUserRole, storeUserAccount } from '../API/ApiService';
 
 export default function AddUser() {
     let navigate = useNavigate()
@@ -16,7 +16,7 @@ export default function AddUser() {
     const { phoneNumber, email, password } = user
     const onChangeInput = async (e) => {
         if (e.target.name === "role") {
-            const userRole = await (await axios.get(`http://localhost:8080/api/user/role/${e.target.value}`)).data;
+            const userRole = await findUserRole(e.target.value);
             setUser({ ...user, role: userRole });
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });
@@ -25,7 +25,7 @@ export default function AddUser() {
     const onSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post("http://localhost:8080/api/user/store", user)
+            await storeUserAccount(user)
             navigate("/")
         } catch (error) {
             setErrors(error.response.data);

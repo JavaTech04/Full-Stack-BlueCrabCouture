@@ -4,6 +4,7 @@ package com.vunh.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Date;
 
@@ -18,7 +19,7 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-//    @Pattern(regexp = "/^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$/", message = "Invalid format phone!")
+    @Length(min = 10, max = 13, message = "Invalid format phone number!")
     @NotBlank(message = "The phone number is empty!")
     @Column(name = "phone_number")
     private String phoneNumber;

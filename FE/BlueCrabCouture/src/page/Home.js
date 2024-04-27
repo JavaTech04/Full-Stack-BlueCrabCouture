@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { deleteUserAccount, getAllUserAccount } from '../API/ApiService';
 
 export default function Home() {
     const [users, setUsers] = useState([])
@@ -8,11 +9,11 @@ export default function Home() {
         loadUsers()
     }, [])
     const loadUsers = async () => {
-        const result = await axios.get("http://localhost:8080/api/user")
-        setUsers(result.data);
+        const result = await getAllUserAccount()
+        setUsers(result);
     }
     const handleDelete = async (uid) => {
-        await axios.delete(`http://localhost:8080/api/user/delete/${uid}`)
+        await deleteUserAccount(uid)
         loadUsers()
     }
     return (
