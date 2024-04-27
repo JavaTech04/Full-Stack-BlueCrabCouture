@@ -26,7 +26,7 @@ export default function AddUser() {
         e.preventDefault()
         try {
             await storeUserAccount(user)
-            navigate("/")
+            navigate("/user")
         } catch (error) {
             setErrors(error.response.data);
             console.log(error);
@@ -63,7 +63,7 @@ export default function AddUser() {
                     <div className="text-danger text-start">{errors.role}</div>
                 </div>
                 <button type='submit' className='btn btn-outline-success mx-2'>Submit</button>
-                <Link to="/" className='btn btn-outline-danger'>Cancel</Link>
+                <Link to="/user" className='btn btn-outline-danger'>Cancel</Link>
             </form>
         </div>
     )

@@ -29,7 +29,7 @@ export default function EditUser() {
         e.preventDefault()
         try {
             await updateUserAccount(user)
-            navigate("/")
+            navigate("/user")
         } catch (error) {
             setErrors(error.response.data);
         }
@@ -69,7 +69,7 @@ export default function EditUser() {
                     </div>
                 </div>
                 <button type='submit' className='btn btn-outline-success mx-2'>Update</button>
-                <Link to="/" className='btn btn-outline-danger'>Cancel</Link>
+                <Link to="/user" className='btn btn-outline-danger'>Cancel</Link>
             </form>
         </div>
     )
