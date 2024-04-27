@@ -37,7 +37,7 @@ export default function Home() {
                                 <td>{item.phoneNumber}</td>
                                 <td>{item.email}</td>
                                 <td>{item.password}</td>
-                                <td>{item.role.roleName}</td>
+                                <td>{item.role.id == 1 ? <span class="badge text-bg-success">{item.role.roleName}</span> : <span class="badge text-bg-primary">{item.role.roleName}</span>}</td>
                                 <td>
                                     <Link to={`/edit-user/${item.id}`} href='#' className='btn btn-warning m-2'>Edit</Link>
                                     <button onClick={() => handleDelete(item.id)} className='btn btn-danger'>Delete</button>

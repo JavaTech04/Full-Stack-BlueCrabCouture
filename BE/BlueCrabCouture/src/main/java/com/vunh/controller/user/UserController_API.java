@@ -1,8 +1,13 @@
 package com.vunh.controller.user;
 
 import com.vunh.entity.UserAccount;
+import com.vunh.entity.UserRole;
 import com.vunh.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,32 +25,38 @@ public class UserController_API {
     }
 
     @GetMapping("/{id}")
-    UserAccount findUserAccountById(@PathVariable Integer id){
+    UserAccount findUserAccountById(@PathVariable Integer id) {
         return this.userService.findByIdUserAccount(id).orElse(new UserAccount());
     }
 
+    @GetMapping("/role/{id}")
+    UserRole findUserRoleById(@PathVariable Integer id){
+        return this.userService.findUserRoleById(id).orElse(null);
+    }
+
     @PostMapping("/store")
-    UserAccount storeUserAccount( @RequestBody UserAccount userAccount){
-        return this.userService.storeOrUpdateUserAccount(userAccount);
+    ResponseEntity<UserAccount> storeUserAccount(@Validated @RequestBody UserAccount userAccount) {
+        return new ResponseEntity<>(this.userService.storeOrUpdateUserAccount(userAccount), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    UserAccount updateUserAccount( @RequestBody UserAccount userAccount){
-        return this.userService.storeOrUpdateUserAccount(userAccount);
+    ResponseEntity<UserAccount> updateUserAccount(@Validated @RequestBody UserAccount userAccount) {
+        return new ResponseEntity<>(this.userService.storeOrUpdateUserAccount(userAccount), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    String deleteUserAccount(@PathVariable Integer id){
+    String deleteUserAccount(@PathVariable Integer id) {
         this.userService.deleteUserAccount(id);
         return "Remove successfully";
     }
 
     @PostMapping("/lock-account/{id}")
-    UserAccount lockUserAccount(@PathVariable Integer id){
+    UserAccount lockUserAccount(@PathVariable Integer id) {
         return this.userService.lockOrUnlokUserAccount(id, true);
     }
+
     @PostMapping("/unlock-account/{id}")
-    UserAccount unLockUserAccount(@PathVariable Integer id){
+    UserAccount unLockUserAccount(@PathVariable Integer id) {
         return this.userService.lockOrUnlokUserAccount(id, false);
     }
 }

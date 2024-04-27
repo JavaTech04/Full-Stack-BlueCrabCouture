@@ -1,7 +1,9 @@
 package com.vunh.service;
 
 import com.vunh.entity.UserAccount;
+import com.vunh.entity.UserRole;
 import com.vunh.repository.UserAccountRepository;
+import com.vunh.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +15,19 @@ public class UserService {
     @Autowired
     private UserAccountRepository userAccountRepository;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+
     public List<UserAccount> getAllUserAccount() {
         return this.userAccountRepository.findAll();
     }
 
     public Optional<UserAccount> findByIdUserAccount(Integer id) {
         return this.userAccountRepository.findById(id);
+    }
+
+    public Optional<UserRole> findUserRoleById(Integer id){
+        return this.userRoleRepository.findById(id);
     }
 
     public UserAccount storeOrUpdateUserAccount(UserAccount account) {
