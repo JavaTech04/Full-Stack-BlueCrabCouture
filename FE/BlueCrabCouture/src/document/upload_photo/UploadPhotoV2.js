@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { uploadImage } from '../service/uploadImage'
 
 export default function UploadPhotoV2() {
     const [profileImage, setProfileImage] = useState()
