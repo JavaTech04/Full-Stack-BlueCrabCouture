@@ -25,16 +25,18 @@ public class Product {
     private String name;
 
     @Column(name = "sold")
-    private Integer sold;
+    private Integer sold = 0;
 
-    @Column(name = "id_image")
-    private Integer idImage;
+    @OneToOne
+    @JoinColumn(name = "id_image")
+    private Image image;
 
     @Column(name = "is_deleted")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
-    @Column(name = "id_user_account")
-    private Integer idUserAccount;
+    @OneToOne
+    @JoinColumn(name = "id_user_account")
+    private UserAccount user;
 
     @Column(name = "create_date")
     private Date createDate = new Date();

@@ -19,7 +19,7 @@ const UploadWidget = () => {
     return (
         <div>
             <button className="btn btn-success" onClick={() => widgetRef.current.open()}>
-                Upload
+                Upload V1
             </button>
             <br />
             <img src={url} width="500px" className="mt-5 border" />
