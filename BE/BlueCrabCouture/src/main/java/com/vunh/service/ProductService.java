@@ -30,7 +30,7 @@ public class ProductService {
     }
 
     public Product storeOrUpdateProductAndImage(Product product) {
-        this.imageRepository.save(product.getImage());
+        this.imageRepository.save(product.getIdImage());
         return this.productRepository.save(product);
     }
 
@@ -38,7 +38,7 @@ public class ProductService {
         Optional<Product> product = this.findProductById(id);
         if (product.isPresent()) {
             this.productRepository.delete(product.get());
-            this.imageRepository.delete(product.get().getImage());
+            this.imageRepository.delete(product.get().getIdImage());
         } else {
             throw new RuntimeException("Can't remove this product!");
         }

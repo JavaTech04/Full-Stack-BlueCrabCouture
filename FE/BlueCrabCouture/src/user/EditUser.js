@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { findUserAccountById, findUserRole, updateUserAccount } from '../API/ApiService'
@@ -12,14 +11,14 @@ export default function EditUser() {
             phoneNumber: "",
             email: "",
             password: "",
-            role: {}
+            idUserRole: {}
         }
     )
     const { phoneNumber, email, password } = user
     const onChangeInput = async (e) => {
         if (e.target.name === "role") {
             const userRole = await findUserRole(e.target.value);
-            setUser({ ...user, role: userRole });
+            setUser({ ...user, idUserRole: userRole });
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });
         }
@@ -60,11 +59,11 @@ export default function EditUser() {
                 </div>
                 <div className="form-floating mb-3" >
                     <div className="form-check form-check-inline">
-                        <input className="form-check-input" type={"radio"} name="role" id="admin" value="1" checked={user.role.id == 1} onChange={(e) => onChangeInput(e)} />
+                        <input className="form-check-input" type={"radio"} name="role" id="admin" value="1" checked={user.idUserRole.id == 1} onChange={(e) => onChangeInput(e)} />
                         <label className="form-check-label" htmlFor="admin">Admin</label>
                     </div>
                     <div className="form-check form-check-inline">
-                        <input className="form-check-input" type={"radio"} name="role" id="user" value="2" checked={user.role.id == 2} onChange={(e) => onChangeInput(e)} />
+                        <input className="form-check-input" type={"radio"} name="role" id="user" value="2" checked={user.idUserRole.id == 2} onChange={(e) => onChangeInput(e)} />
                         <label className="form-check-label" htmlFor="user">User</label>
                     </div>
                 </div>

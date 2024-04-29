@@ -25,56 +25,70 @@ export default function HookForm() {
     }
     return (
         <div className='container'>
-            <h1 className='title'>Form Control</h1>
+            <h1 className='text-secondary'>Form Control</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    placeholder='Title...'
-                    {...register("title")}
-                    onChange={(e) => {
-                        document.title = e.target.value
-                    }}
-                />
-                <input
-                    placeholder='Full name...'
-                    {...register("fullName", { required: true })}
-                />
-                {errors.fullName && <small>This field is required</small>}
-                <input
-                    placeholder='Age...' type='number'
-                    {...register("age", { required: true, min: 15 })}
-                />
-                {errors.age && <small>This field is required and the age must be greater than 15</small>}
-                <input
-                    type='date'
-                    {...register("birthDate", { required: true })}
-                />
-                {errors.birthDate && <small>This field is required</small>}
-                <div className='container-gender'>
+                <div>
                     <input
+                        className="form-control"
+                        placeholder='Title...'
+                        {...register("title")}
+                        onChange={(e) => {
+                            document.title = e.target.value
+                        }}
+                    />
+                </div>
+                <div>
+                    <input
+                        className="form-control"
+                        placeholder='Full name...'
+                        {...register("fullName", { required: true })}
+                    />
+                    {errors.fullName && <small>This field is required</small>}
+                </div>
+                <div>
+                    <input
+                        className="form-control"
+                        placeholder='Age...' type='number'
+                        {...register("age", { required: true, min: 15 })}
+                    />
+                    {errors.age && <small>This field is required and the age must be greater than 15</small>}
+                </div>
+                <div>
+                    <input
+                        className="form-control"
+                        type='date'
+                        {...register("birthDate", { required: true })}
+                    />
+                    {errors.birthDate && <small>This field is required</small>}
+                </div>
+                <div>
+                    <input
+                        className="form-check-input"
                         name='gender'
-                        className='radio'
                         type='radio'
                         value="Male"
                         id='male'
                         {...register("gender", { required: true })}
                     /><label htmlFor='male'>Male</label>
-                    <input name='gender'
-                        className='radio'
+                    <input
+                        className="form-check-input" name='gender'
                         type='radio'
                         value="Female"
                         id='female'
                         {...register("gender", { required: true })}
                     /><label htmlFor='female'>Female</label>
+                    {errors.gender && <small>This field is required</small>}
                 </div>
-                {errors.gender && <small>This field is required</small>}
-                <select {...register("job", { required: true })}>
-                    <option defaultValue="" disabled={true}>Job</option>
-                    {jobs.map((item, index) => (
-                        <option key={index} value={item.id}>{item.job}</option>
-                    ))}
-                </select>
-                {errors.role && <small>This field is required</small>}
-                <button type="submit">submit</button>
+                <div>
+                    <select className="form-select" {...register("job", { required: true })}>
+                        <option defaultValue="" disabled={true}>Job</option>
+                        {jobs.map((item, index) => (
+                            <option key={index} value={item.id}>{item.job}</option>
+                        ))}
+                    </select>
+                    {errors.role && <small>This field is required</small>}
+                </div>
+                <button className='mt-3 btn btn-secondary' type="submit">submit</button>
             </form>
         </div>
     );

@@ -22,6 +22,7 @@ export default function ViewUser() {
                 <thead>
                     <tr>
                         <th scope="col">No</th>
+                        <th scope="col">Full Name</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Email</th>
                         <th scope="col">Password</th>
@@ -34,10 +35,11 @@ export default function ViewUser() {
                         users.map((item, index) => (
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
+                                <td>{item.userAccountDetail ? item.userAccountDetail.name : <p className='text-danger'>Not found!</p>}</td>
                                 <td>{item.phoneNumber}</td>
                                 <td>{item.email}</td>
                                 <td>{item.password}</td>
-                                <td>{item.role.id == 1 ? <span className="badge text-bg-success">{item.role.roleName}</span> : <span className="badge text-bg-primary">{item.role.roleName}</span>}</td>
+                                <td>{item.idUserRole.id === 1 ? <span className="badge text-bg-success">{item.idUserRole.roleName}</span> : <span className="badge text-bg-primary">{item.idUserRole.roleName}</span>}</td>
                                 <td>
                                     <Link to={`/user/edit/${item.id}`} className='btn btn-warning m-2'>Edit</Link>
                                     <button onClick={() => handleDelete(item.id)} className='btn btn-danger'>Delete</button>

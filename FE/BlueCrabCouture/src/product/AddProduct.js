@@ -37,10 +37,10 @@ export default function AddProduct() {
         const result = {
             code: data.code,
             name: data.name,
-            image: {
+            idImage: {
                 url: response.data.url
             },
-            user: await findUserAccountById(data.user)
+            idUserAccount: await findUserAccountById(data.user)
         }
         await storeProduct(result)
         navigate("/product")
@@ -98,7 +98,9 @@ export default function AddProduct() {
                     <div>
                         {
                             isUpload ?
-                                ("Uploading...") :
+                                <div className="spinner-border" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div> :
                                 <div>
                                     <button type='submit' className='btn btn-outline-success m-3'>Submit</button>
                                     <Link to="/product" className='btn btn-outline-danger'>Cancel</Link>

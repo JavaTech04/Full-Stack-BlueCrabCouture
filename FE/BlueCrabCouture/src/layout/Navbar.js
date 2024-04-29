@@ -16,21 +16,28 @@ export default function Navbar() {
                                 <Link className="nav-link active" aria-current="page" to="/"><i className="bi bi-house-fill"></i> Home</Link>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-people-fill"></i> User</a>
+                                <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-people-fill"></i> User</a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/user"><i className="bi bi-person-lines-fill"></i> Views</Link></li>
                                     <li><Link className="dropdown-item" to="/user/create"><i className="bi bi-person-plus-fill"></i> Create user</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-archive-fill"></i> Product</a>
+                                <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-archive-fill"></i> Product</a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/product"><i className="bi bi-box2-fill"></i> Views</Link></li>
                                     <li><Link className="dropdown-item" to="/product/create"><i className="bi bi-database-fill-add"></i> Create product</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-file-earmark-code-fill"></i> Document</a>
+                                <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-signpost-2-fill"></i> Product attributes</a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/attributes/color"><i className="bi bi-palette-fill"></i> Color</Link></li>
+                                    <li><Link className="dropdown-item" to="/attributes/brand"><i className="bi bi-dropbox"></i> Brand</Link></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="bi bi-file-earmark-code-fill"></i> Document</a>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/document/hook-form"><i className="bi bi-ui-radios"></i> Hook Form React</Link></li>
                                     <li><Link className="dropdown-item" to="/upload"><i className="bi bi-cloud-plus-fill"></i> Upload</Link></li>

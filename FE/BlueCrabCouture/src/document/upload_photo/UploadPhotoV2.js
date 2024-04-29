@@ -52,7 +52,7 @@ export default function UploadPhotoV2() {
                     <form onSubmit={uploadImage} className='form-control'>
                         <p>
                             <label>Phto: </label>
-                            <input type='file' accept='image/png, image/jpeg' name='image'
+                            <input type='file' className='form-control' accept='image/png, image/jpeg' name='image'
                                 onChange={handleImageChange} />
                         </p>
                         <p>

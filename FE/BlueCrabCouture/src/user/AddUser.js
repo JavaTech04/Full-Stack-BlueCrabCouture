@@ -10,14 +10,14 @@ export default function AddUser() {
             phoneNumber: "",
             email: "",
             password: "",
-            role: ""
+            idUserRole: ""
         }
     )
     const { phoneNumber, email, password } = user
     const onChangeInput = async (e) => {
         if (e.target.name === "role") {
             const userRole = await findUserRole(e.target.value);
-            setUser({ ...user, role: userRole });
+            setUser({ ...user, idUserRole: userRole });
         } else {
             setUser({ ...user, [e.target.name]: e.target.value });
         }

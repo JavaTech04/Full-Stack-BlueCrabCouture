@@ -1,7 +1,6 @@
 package com.vunh.controller.product;
 
 import com.vunh.entity.Product;
-import com.vunh.entity.UserAccount;
 import com.vunh.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

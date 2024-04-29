@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { deleteProduct, getAllProduct } from '../API/ApiProduct'
-import { Link } from 'react-router-dom'
 export default function ViewProduct() {
     const [products, setProducts] = useState([])
     const loadProducts = async () => {
@@ -35,7 +34,7 @@ export default function ViewProduct() {
                             <tr key={index}>
                                 <th scope="row">{index + 1}</th>
                                 <td>
-                                    <img src={item.image.url} className="rounded mx-auto d-block image-table-product" alt="..." />
+                                    <img src={item.idImage.url} className="rounded mx-auto d-block image-table-product" alt="..." />
                                 </td>
                                 <td className='text-start'>{item.name}</td>
                                 <td>{item.sold}</td>

@@ -1,45 +1,74 @@
 package com.vunh.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Nationalized;
 
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "UserAccount")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class UserAccount {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Length(min = 10, max = 13, message = "Invalid format phone number!")
-    @NotBlank(message = "The phone number is empty!")
-    @Column(name = "phone_number")
+    @Size(max = 13)
+    @NotNull
+    @Nationalized
+    @Column(name = "phone_number", nullable = false, length = 13)
     private String phoneNumber;
 
-    @NotBlank(message = "The email is empty!")
-    @Email(message = "Invalid format email!")
-    @Column(name = "email")
+    @Size(max = 100)
+    @NotNull
+    @Nationalized
+    @Column(name = "email", nullable = false, length = 100)
     private String email;
 
-    @NotBlank(message = "The password is empty!")
-    @Column(name = "password")
+    @Size(max = 50)
+    @NotNull
+    @Nationalized
+    @Column(name = "password", nullable = false, length = 50)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user_role")
-    private UserRole role;
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "id_user_role", nullable = false)
+    private UserRole idUserRole;
 
-    @Column(name = "is_locked")
+    @NotNull
+    @ColumnDefault("0")
+    @Column(name = "is_locked", nullable = false)
     private Boolean isLocked = false;
 
+    @ColumnDefault("getdate()")
     @Column(name = "create_date")
     private Date createDate = new Date();
+
+    @OneToMany(mappedBy = "idUserAccount")
+    private Set<Order> orders = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idUserAccount")
+    @JsonIgnore
+    private Set<Product> products = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idUser")
+    private Set<ShoppingCart> shoppingCarts = new LinkedHashSet<>();
+
+    @OneToOne(mappedBy = "idUserAccount")
+    private UserAccountDetail userAccountDetail;
+
 }
