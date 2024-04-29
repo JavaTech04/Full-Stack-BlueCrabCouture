@@ -10,7 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -33,7 +33,7 @@ public class Image {
 
     @ColumnDefault("getdate()")
     @Column(name = "create_date")
-    private LocalDate createDate;
+    private Date createDate = new Date();
 
 //    @OneToMany(mappedBy = "idImage")
 //    private Set<Product> products = new LinkedHashSet<>();

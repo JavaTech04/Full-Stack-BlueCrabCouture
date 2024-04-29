@@ -34,14 +34,27 @@ export default function AddProduct() {
         image.append("cloud_name", "dswqplrdx")
         image.append("upload_preset", "qh49wlsn")
         const response = await axios.post("https://api.cloudinary.com/v1_1/dswqplrdx/image/upload", image)
+        const user = await findUserAccountById(data.user)
         const result = {
             code: data.code,
             name: data.name,
             idImage: {
                 url: response.data.url
             },
-            idUserAccount: await findUserAccountById(data.user)
+            idUserAccount: user 
+            // idUserAccount: {
+            //     id: user.id,
+            //     phoneNumber: user.phoneNumber,
+            //     email: user.email,
+            //     password: user.password,
+            //     idUserRole: {
+            //         id: user.idUserRole.id,
+            //         roleName: user.idUserRole.roleName,
+            //         createDate: user.idUserRole.createDate
+            //     }
+            // }
         }
+        console.log(result);
         await storeProduct(result)
         navigate("/product")
         swal("Good job!", "Successfully", "success");

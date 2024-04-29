@@ -1,6 +1,8 @@
 package com.vunh.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vunh.utils.HibernateProxySerializer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -35,7 +37,7 @@ public class Product {
     @Size(max = 255)
     @NotNull
     @Nationalized
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @ColumnDefault("0")
@@ -50,10 +52,10 @@ public class Product {
     @Column(name = "is_deleted")
     private Boolean isDeleted = false;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_user_account", nullable = false)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_user_account")
+//    @JsonIgnore
+//    @JsonSerialize(using = HibernateProxySerializer.class)
     private UserAccount idUserAccount;
 
     @ColumnDefault("getdate()")
